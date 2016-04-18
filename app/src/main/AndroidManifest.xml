@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.qicfix.qicfixapp">
+    package="com.qicfix.qicfixapp" >
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -13,18 +13,25 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
-        android:name=".MainActivity"
-        android:label="@string/app_name">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:name=".Login"
+            android:label="loginScreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".OptionsActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Registration" />
         <activity
-            android:name=".OptionsActivity">
+            android:name=".NewMainActivity"
+            android:label="@string/title_activity_new_main"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity android:name=".TowerServiceScreen" >
         </activity>
     </application>
 

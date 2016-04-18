@@ -42,7 +42,7 @@ public class Database extends SQLiteOpenHelper {
         System.out.println("*********************************************");
     }
 
-    // Method is called during an upgrade of the database
+    // Method is called during an deletion of the database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         System.out.println("*********************************************");
