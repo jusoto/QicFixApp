@@ -40,6 +40,5 @@
         android:paddingTop="10dp"
         android:layout_marginTop="20dp"
         android:text="@string/submit"
-        android:onClick="login"
-        android:id="@+id/button" />
+        android:id="@+id/loginButton" />
 </LinearLayout>

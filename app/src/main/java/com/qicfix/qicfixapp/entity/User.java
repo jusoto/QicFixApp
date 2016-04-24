@@ -197,7 +197,7 @@ public class User {
                 obj.setEmail(item.getString(Data.KEY_EMAIL));
                 obj.setName(item.getString(Data.KEY_NAME));
                 obj.setAddress(item.getString(Data.KEY_ADDRESS));
-                obj.setDob(Utility.convertStringToDate(item.getString(Data.KEY_DOB)));
+            //    obj.setDob(Utility.convertStringToDate(item.getString(Data.KEY_DOB)));
                 users.add(obj);
             }
 

@@ -71,7 +71,7 @@ public class SyncActivity extends Activity {
 
     private void updateTable(String url, String tableName){
 
-        if (Utility.getNetworkStatus(getBaseContext())) {
+        if (true) {
             try {
                 new DownloadWebpageTask(getBaseContext(), tableName).execute(url).get();
             } catch (InterruptedException e) {
