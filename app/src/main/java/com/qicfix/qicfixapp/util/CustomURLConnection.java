@@ -25,12 +25,11 @@ public class CustomURLConnection {
      *
      * @param url The web address to post the request to
      * @param postParameters The parameters to send via the request
-     * @param token The Token to send to Authorize request
      * @return The result of the request
      * @throws Exception
      */
 
-    public static String executeHttpPost(String url, JSONObject postParameters, String token) throws Exception {
+    public static String executeHttpPost(String url, String postParameters) throws Exception {
         URL apiUrl;
         HttpURLConnection request = null;
         BufferedReader in = null;
@@ -42,16 +41,14 @@ public class CustomURLConnection {
             request.setConnectTimeout(HTTP_TIMEOUT);
             request.setRequestMethod("POST");
             request.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            if(token != null){
-                request.setRequestProperty("Authorization", "Bearer " + token);
-            }
 
             //Send request
             DataOutputStream wr = new DataOutputStream(request.getOutputStream());
-
-            wr.writeBytes(postParameters.toString());
+            System.out.println(postParameters);
+            wr.writeBytes(postParameters);
             wr.flush();
             wr.close();
+            System.out.println(request);
 
             //turn request response into a string
             if(request.getResponseCode() >= 400){
@@ -140,11 +137,10 @@ public class CustomURLConnection {
      *
      * @param url The web address to post the request to
      * @param putParameters The parameters to send via the request
-     * @param token The Token to send to Authorize request
      * @return The result of the request
      * @throws Exception
      */
-    public static String executeHttpPut(String url, JSONObject putParameters, String token) throws Exception {
+    public static String executeHttpPut(String url, JSONObject putParameters) throws Exception {
         BufferedReader in = null;
         URL apiUrl;
         HttpURLConnection request;
@@ -156,9 +152,6 @@ public class CustomURLConnection {
             request.setConnectTimeout(HTTP_TIMEOUT);
             request.setRequestMethod("PUT");
             request.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            if(token != null){
-                request.setRequestProperty("Authorization", "Bearer " + token);
-            }
 
             //Send request
             DataOutputStream wr = new DataOutputStream(request.getOutputStream());

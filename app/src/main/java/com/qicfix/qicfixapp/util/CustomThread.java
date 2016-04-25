@@ -45,7 +45,7 @@ public class CustomThread {
         return result;
     }
 
-    public static String CustomThreadHttpPost(final String url, final String token, final JSONObject parameters){
+    public static String CustomThreadHttpPost(final String url, final String parameters){
 
         String result = null;
 
@@ -54,7 +54,7 @@ public class CustomThread {
         Future<String> future = service.submit(new Callable<String>() {
             @Override
             public String call() throws Exception {
-                String response = CustomURLConnection.executeHttpPost(url, parameters, token);
+                String response = CustomURLConnection.executeHttpPost(url, parameters);
                 return response;
             }
         });
@@ -74,7 +74,7 @@ public class CustomThread {
 
     }
 
-    public static String CustomThreadHttpPut(final String url, final String token, final JSONObject parameters){
+    public static String CustomThreadHttpPut(final String url, final JSONObject parameters){
 
         String result = null;
 
@@ -83,7 +83,7 @@ public class CustomThread {
         Future<String> future = service.submit(new Callable<String>() {
             @Override
             public String call() throws Exception {
-                String response = CustomURLConnection.executeHttpPut(url, parameters, token);
+                String response = CustomURLConnection.executeHttpPut(url, parameters);
                 return response;
             }
         });

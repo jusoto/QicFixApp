@@ -3,10 +3,13 @@ package com.qicfix.qicfixapp.Tower;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,13 +29,12 @@ import org.json.JSONObject;
 import java.util.Date;
 import java.util.List;
 
-public class TowerServiceScreen extends AppCompatActivity {
+public class TowerServiceScreen extends Fragment {
 
     private String token = "";
     private String url = "";
     private String email = "";
     String DEFAULT = "N/A";
-    private JSONObject jsonResponse = null;
     private int code;
 
     private int[] cid;
@@ -43,25 +45,42 @@ public class TowerServiceScreen extends AppCompatActivity {
 
     ListView list;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tower_service_screen);
+    private static final String ARG_SECTION_NUMBER = "section_number";
+    /**
+     * Returns a new instance of this fragment for the given section
+     * number.
+     */
+    public static TowerServiceScreen newInstance(int sectionNumber) {
+        TowerServiceScreen fragment = new TowerServiceScreen();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public TowerServiceScreen() {
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View serviceListView = inflater.inflate(R.layout.activity_tower_service_screen, container, false);
 
         //pull data stored on the device
-        SharedPreferences sharedPreferences = getSharedPreferences("USERDATA", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("USERDATA", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("TOKEN", DEFAULT);
         url = sharedPreferences.getString("URL", DEFAULT);
         email = sharedPreferences.getString("EMAIL", DEFAULT);
 
-        retrieveServices();
+        retrieveServices(serviceListView);
+
+        return serviceListView;
 
     }
 
     /**
      * retrieves the list of services and puts them in a list table
      */
-    private void retrieveServices() {
+    private void retrieveServices(View view) {
 
         //gets a string response of all the services
         String services = CustomThread.CustomThreadHttpGet(url + "service?email=" + email + "&location=null&token=" + token);
@@ -92,8 +111,8 @@ public class TowerServiceScreen extends AppCompatActivity {
         }
 
         //Created custom Adapter and applied it to list view
-        ServiceList adapter = new ServiceList(this, cid, cityPickup, addressPickup, cityDestination, addressDestination);
-        list = (ListView) findViewById(R.id.serviceList);
+        ServiceList adapter = new ServiceList(this.getActivity(), cid, cityPickup, addressPickup, cityDestination, addressDestination);
+        list = (ListView) view.findViewById(R.id.serviceList);
         list.setAdapter(adapter);
 
         //Enables each list row to be clickable

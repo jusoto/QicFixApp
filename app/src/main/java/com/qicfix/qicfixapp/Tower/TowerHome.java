@@ -1,7 +1,7 @@
 package com.qicfix.qicfixapp.Tower;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -42,25 +42,24 @@ public class TowerHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tower_home);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.towerToolbar);
         setSupportActionBar(toolbar);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tower_tab_layout);
+
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(R.id.towerContainer);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        tabLayout.setTabsFromPagerAdapter(mSectionsPagerAdapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        tabLayout.setupWithViewPager(mViewPager);
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
     }
 
@@ -136,7 +135,19 @@ public class TowerHome extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            System.out.println("hihiih");
+            switch (position) {
+                case 0:
+                    TowerServiceScreen twsTab = new TowerServiceScreen();
+                    return twsTab;
+                case 1:
+                    return PlaceholderFragment.newInstance(position + 1);
+                case 2:
+                    TowerProfile profile = new TowerProfile();
+                    return profile;
+                default:
+                    return null;
+            }
         }
 
         @Override
@@ -149,11 +160,11 @@ public class TowerHome extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "SERVICE LIST";
                 case 1:
-                    return "SECTION 2";
+                    return "CURRENT SERVICE";
                 case 2:
-                    return "SECTION 3";
+                    return "PROFILE";
             }
             return null;
         }

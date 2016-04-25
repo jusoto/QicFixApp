@@ -12,10 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.qicfix.qicfixapp.Tower.CurrentService;
+import com.qicfix.qicfixapp.Tower.TowerHome;
 import com.qicfix.qicfixapp.Tower.TowerServiceScreen;
 import com.qicfix.qicfixapp.util.CustomThread;
-
-import org.json.JSONException;
 
 public class Login extends Fragment {
 
@@ -89,9 +89,10 @@ public class Login extends Fragment {
         editor.putString("URL", "http://www.qicfixit.com:8080/api/");
         editor.apply();
 
+
         error.setVisibility(View.INVISIBLE);
         //creates new Intent and passes it the user id
-        Intent loadProfile = new Intent(getActivity(), TowerServiceScreen.class);
+        Intent loadProfile = new Intent(getActivity(), TowerHome.class);
 
         startActivity(loadProfile);
         getActivity().finish();

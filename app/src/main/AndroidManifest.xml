@@ -26,11 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Tower.TowerServiceScreen"></activity>
         <activity
             android:name=".Tower.TowerHome"
             android:label="@string/title_activity_tower_home"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Tower.CurrentService" />
+        <activity android:name=".Tower.TowerProfileForm" />
     </application>
 
 </manifest>
