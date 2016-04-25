@@ -24,6 +24,7 @@ public class TowerProfile extends Fragment{
     private String token = "";
     private String url = "";
     private String email = "";
+    Tower t;
     String DEFAULT = "N/A";
 
     TextView profileEmail, fname, lname, phone, streetAddress, city, state, zipcode, company;
@@ -79,13 +80,13 @@ public class TowerProfile extends Fragment{
                 editProfile();
             }
         });
-
+        //call to the profile API
         String profile = CustomThread.CustomThreadHttpGet(url + "tower?id=1&email=" + email + "&token=" + token);
 
         List<Tower> list = Tower.fromJson(profile);
-
+        //Fills screen with profile information
         if(list.size()==1){
-            Tower t = list.get(0);
+            t = list.get(0);
             profileEmail.setText(t.getEmail());
             fname.setText(t.getFname());
             lname.setText(t.getLname());
@@ -103,9 +104,19 @@ public class TowerProfile extends Fragment{
         return profileView;
     }
 
+    /**
+     * sends the information from the profile to the profile form
+     */
     public void editProfile(){
         Intent profileForm = new Intent(getActivity(), TowerProfileForm.class);
-
+        profileForm.putExtra("FNAME", fname.getText().toString());
+        profileForm.putExtra("LNAME", lname.getText().toString());
+        profileForm.putExtra("PHONE", phone.getText().toString());
+        profileForm.putExtra("STREET", streetAddress.getText().toString());
+        profileForm.putExtra("CITY", city.getText().toString());
+        profileForm.putExtra("STATE", state.getText().toString());
+        profileForm.putExtra("ZIP", zipcode.getText().toString());
+        profileForm.putExtra("COMPANY", company.getText().toString());
         startActivity(profileForm);
 
     }

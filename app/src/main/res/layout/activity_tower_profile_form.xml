@@ -26,7 +26,7 @@
             android:inputType="textEmailAddress"
             android:hint="@string/email"
             android:ems="10"
-            android:id="@+id/emailRegForm" />
+            android:id="@+id/emailForm" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
             android:inputType="textPersonName"
             android:hint="@string/first_name"
             android:ems="10"
-            android:id="@+id/firstNameRegForm" />
+            android:id="@+id/firstNameForm" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
             android:inputType="textPersonName"
             android:hint="@string/last_name"
             android:ems="10"
-            android:id="@+id/lastNameRegForm" />
+            android:id="@+id/lastNameForm" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
             android:inputType="phone"
             android:hint="@string/phone"
             android:ems="10"
-            android:id="@+id/phoneRegForm" />
+            android:id="@+id/phoneForm" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
             android:inputType="textPostalAddress"
             android:hint="@string/address"
             android:ems="10"
-            android:id="@+id/addressRegForm" />
+            android:id="@+id/addressForm" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
             android:inputType="textPostalAddress"
             android:hint="@string/city"
             android:ems="10"
-            android:id="@+id/cityRegForm" />
+            android:id="@+id/cityForm" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
             android:inputType="textPostalAddress"
             android:hint="@string/state"
             android:ems="10"
-            android:id="@+id/stateRegForm" />
+            android:id="@+id/stateForm" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
             android:inputType="number"
             android:hint="@string/zipcode"
             android:ems="10"
-            android:id="@+id/zipcodeRegForm" />
+            android:id="@+id/zipcodeForm" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
             android:inputType="textPassword"
             android:hint="@string/password"
             android:ems="10"
-            android:id="@+id/passwordRegForm" />
+            android:id="@+id/passwordForm" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
             android:inputType="textPassword"
             android:hint="@string/confirm_password"
             android:ems="10"
-            android:id="@+id/confirmPassRegForm" />
+            android:id="@+id/confirmPassForm" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
             android:inputType="text"
             android:hint="@string/company_name"
             android:ems="10"
-            android:id="@+id/companyNameRegForm" />
+            android:id="@+id/companyNameForm" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/submit"
-            android:id="@+id/registrationButton" />
+            android:id="@+id/formButton" />
 
     </LinearLayout>
 </ScrollView>

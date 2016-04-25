@@ -74,7 +74,7 @@ public class CustomThread {
 
     }
 
-    public static String CustomThreadHttpPut(final String url, final JSONObject parameters){
+    public static String CustomThreadHttpPut(final String url, final String parameters){
 
         String result = null;
 

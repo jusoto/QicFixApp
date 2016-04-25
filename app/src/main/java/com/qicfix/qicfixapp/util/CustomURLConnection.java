@@ -140,7 +140,7 @@ public class CustomURLConnection {
      * @return The result of the request
      * @throws Exception
      */
-    public static String executeHttpPut(String url, JSONObject putParameters) throws Exception {
+    public static String executeHttpPut(String url, String putParameters) throws Exception {
         BufferedReader in = null;
         URL apiUrl;
         HttpURLConnection request;
