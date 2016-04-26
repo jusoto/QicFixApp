@@ -2,6 +2,7 @@ package com.qicfix.qicfixapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
+import com.robotium.solo.*;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
