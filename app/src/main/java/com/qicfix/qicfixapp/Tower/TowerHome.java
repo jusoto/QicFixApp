@@ -62,6 +62,12 @@ public class TowerHome extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
     }
+     @Override
+    public void onBackPressed() {
+         LogoutDialog alertDialog = new LogoutDialog();
+         alertDialog.show(getFragmentManager(), "logout");
+        // super.onBackPressed();
+    }
 
 
     @Override
@@ -79,7 +85,9 @@ public class TowerHome extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            LogoutDialog alertDialog = new LogoutDialog();
+            alertDialog.show(getFragmentManager(), "logout");
             return true;
         }
 
@@ -135,7 +143,6 @@ public class TowerHome extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            System.out.println("hihiih");
             switch (position) {
                 case 0:
                     TowerServiceScreen twsTab = new TowerServiceScreen();

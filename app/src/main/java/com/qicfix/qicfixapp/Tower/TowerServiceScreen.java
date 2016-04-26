@@ -1,9 +1,12 @@
 package com.qicfix.qicfixapp.Tower;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +26,7 @@ import com.qicfix.qicfixapp.ServiceList;
 import com.qicfix.qicfixapp.model.Service;
 import com.qicfix.qicfixapp.util.CustomThread;
 import com.qicfix.qicfixapp.util.Utility;
+import com.qicfix.qicfixapp.Tower.ServiceDialog;
 
 import org.json.JSONObject;
 
@@ -87,7 +91,7 @@ public class TowerServiceScreen extends Fragment {
 
         Log.d("SERVICES", services);
 
-        List<Service> foo = fromJsonUser(services);
+        final List<Service> foo = fromJsonUser(services);
 
         //initialize the length of the arrays
         cid = new int[foo.size()];
@@ -115,16 +119,33 @@ public class TowerServiceScreen extends Fragment {
         list = (ListView) view.findViewById(R.id.serviceList);
         list.setAdapter(adapter);
 
+        final ServiceDialog sd = new ServiceDialog();
+
         //Enables each list row to be clickable
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent courseView = new Intent(getApplication(), AdminCourseView.class);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Service service = foo.get(position);
+                Bundle args = new Bundle();
+                args.putString("ADDRESSPICKUP", service.getStreetAddressPickup());
+                args.putString("CITYPICKUP", service.getCityPickup());
+                args.putString("STATEPICKUP", service.getStatePickup());
+                args.putString("ZIPPICKUP", service.getZipcodePickup());
+                args.putString("ADDRESSDEST", service.getStreetAddressDestination());
+                args.putString("CITYDEST", service.getCityDestination());
+                args.putString("STATEDEST", service.getStateDestination());
+                args.putString("ZIPDEST", service.getZipcodeDestination());
+                args.putInt("CID", service.getClientId());
+                args.putInt("SID", service.getId());
+                sd.setArguments(args);
+
+                sd.show(getActivity().getFragmentManager(), "Stuff");
+
 //                courseView.putExtra("CID", cid[position]);
 //                courseView.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                startActivity(courseView);
-//            }
-//        });
+            }
+        });
 
     }
 

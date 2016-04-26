@@ -45,5 +45,9 @@
     <string name="company_name">Company Name</string>
     <string name="profile">Profile</string>
     <string name="edit_profile">Edit profile</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="accept_service">Accept Service</string>
+    <string name="logout">Logout</string>
 
 </resources>

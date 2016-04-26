@@ -24,6 +24,7 @@ public class TowerProfileForm extends AppCompatActivity {
     private String token = "";
     private String url = "";
     private String email = "";
+    private int id;
     String DEFAULT = "N/A";
 
     EditText profileEmail, pass, confirmPass, fname, lname, phone, streetAddress, city, state, zipcode, company;
@@ -40,6 +41,7 @@ public class TowerProfileForm extends AppCompatActivity {
         token = sharedPreferences.getString("TOKEN", DEFAULT);
         url = sharedPreferences.getString("URL", DEFAULT);
         email = sharedPreferences.getString("EMAIL", DEFAULT);
+        id = sharedPreferences.getInt("ID", -1);
 
         //Initialize all the Edit Texts with the istration form
         profileEmail = (EditText) findViewById(R.id.emailForm);
@@ -107,14 +109,16 @@ public class TowerProfileForm extends AppCompatActivity {
             parameters.setPermitNumber("null");
 
             list.add(parameters);
+            System.out.println(Tower.toJson(list));
             String response = CustomThread.CustomThreadHttpPut(
-                    "http://www.qicfixit.com:8080/api/tower", Tower.toJson(list));
+                    "http://www.qicfixit.com:8080/api/tower?id=" + id + "&email="+ email + "&token="+token, Tower.toJson(list));
 
-            System.out.println(response.toString());
+            System.out.println(response);
             //if true is returned then it runs this
-            if (response.equals("true")) {
-                Intent loadProfile = new Intent(this, TowerHome.class);
-                startActivity(loadProfile);
+            if (response.contains("true")) {
+                Intent towerHome = new Intent(this, TowerHome.class);
+                towerHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(towerHome);
                 //if false is returned it shows error
             } else {
                 error.setVisibility(View.VISIBLE);

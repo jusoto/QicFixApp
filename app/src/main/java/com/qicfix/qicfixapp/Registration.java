@@ -1,5 +1,6 @@
 package com.qicfix.qicfixapp;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -104,10 +105,13 @@ public class Registration extends Fragment {
             String response = CustomThread.CustomThreadHttpPost(
                     "http://www.qicfixit.com:8080/api/tower", toJson(list));
 
-            System.out.println(response.toString());
+            System.out.println(response);
             //if true is returned then it runs this
-            if (response.toString().equals("true")) {
-                System.out.println("YAY");
+            if (response.contains("true")) {
+                Intent login = new Intent(getActivity(), MainActivity.class);
+                login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(login);
+                getActivity().finish();
                 //if false is returned it shows error
             } else {
                 error.setVisibility(View.VISIBLE);

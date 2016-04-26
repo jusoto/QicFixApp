@@ -28,9 +28,7 @@ public class CurrentService extends AppCompatActivity {
         email = sharedPreferences.getString("EMAIL", DEFAULT);
 
         //gets a string response of all the services
-        //String services = CustomThread.CustomThreadHttpGet(url + "service/active?email=" + email + "&token=" + token);
-        String services = CustomThread.CustomThreadHttpGet(url + "tower?id=1&email=" + email + "&token=" + token);
-
-        Log.d("SERVICES", services);
+        String services = CustomThread.CustomThreadHttpGet(url + "service/active?email=" + email + "&token=" + token);
+        System.out.println(services);
     }
 }

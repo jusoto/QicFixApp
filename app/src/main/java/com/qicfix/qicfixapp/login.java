@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.qicfix.qicfixapp.Tower.CurrentService;
 import com.qicfix.qicfixapp.Tower.TowerHome;
-import com.qicfix.qicfixapp.Tower.TowerServiceScreen;
 import com.qicfix.qicfixapp.util.CustomThread;
 
 public class Login extends Fragment {
@@ -93,9 +92,8 @@ public class Login extends Fragment {
         error.setVisibility(View.INVISIBLE);
         //creates new Intent and passes it the user id
         Intent loadProfile = new Intent(getActivity(), TowerHome.class);
-
+        loadProfile.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(loadProfile);
-        getActivity().finish();
 
     }
 }

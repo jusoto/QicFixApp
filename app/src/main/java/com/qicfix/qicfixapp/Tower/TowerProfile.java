@@ -21,9 +21,11 @@ import java.util.List;
 
 public class TowerProfile extends Fragment{
 
+    private SharedPreferences sharedPreferences;
     private String token = "";
     private String url = "";
     private String email = "";
+    private int id;
     Tower t;
     String DEFAULT = "N/A";
 
@@ -54,10 +56,11 @@ public class TowerProfile extends Fragment{
         View profileView = inflater.inflate(R.layout.activity_tower_profile, container, false);
 
         //pull data stored on the device
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("USERDATA", Context.MODE_PRIVATE);
+        sharedPreferences = this.getActivity().getSharedPreferences("USERDATA", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("TOKEN", DEFAULT);
         url = sharedPreferences.getString("URL", DEFAULT);
         email = sharedPreferences.getString("EMAIL", DEFAULT);
+        id = sharedPreferences.getInt("ID", -1);
 
         //Initialize all the Text Views with the profile
         profileEmail = (TextView) profileView.findViewById(R.id.profileEmail);
@@ -87,6 +90,11 @@ public class TowerProfile extends Fragment{
         //Fills screen with profile information
         if(list.size()==1){
             t = list.get(0);
+            if(id == -1){
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("ID", t.getId());
+                editor.apply();
+            }
             profileEmail.setText(t.getEmail());
             fname.setText(t.getFname());
             lname.setText(t.getLname());
@@ -117,6 +125,7 @@ public class TowerProfile extends Fragment{
         profileForm.putExtra("STATE", state.getText().toString());
         profileForm.putExtra("ZIP", zipcode.getText().toString());
         profileForm.putExtra("COMPANY", company.getText().toString());
+        profileForm.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(profileForm);
 
     }
