@@ -61,7 +61,7 @@ public class Login extends Fragment {
                                 "&password=" + pass.getText().toString());
 
                 System.out.println(response);
-                if(response != null) {
+                if(response.length()>10) {
                     processResponse(response);
                 } else {
                     error.setVisibility(View.VISIBLE);
